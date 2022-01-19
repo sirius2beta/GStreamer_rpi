@@ -39,8 +39,8 @@ void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_messag
 			gst_element_set_state (data->pipeline, GST_STATE_PLAYING);
 			data->streaming_started = true;
 		}
-	}else if(false){
-		printf("qos...");
+	}else if(cap.compare(string("QUIT"))){
+		cout<<"quit..."<<endl;
 	}
 }
 
