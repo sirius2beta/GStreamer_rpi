@@ -39,8 +39,14 @@ void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_messag
 			gst_element_set_state (data->pipeline, GST_STATE_PLAYING);
 			data->streaming_started = true;
 		}
+	}else if(cap.compare(string("GST:"))){
+		string gst_command(raw_msg,space_pos+1,raw_msg.length-space_pose-1);
+		cout<<gst_command<<endl;
+	
 	}else if(cap.compare(string("QUIT"))){
 		cout<<"quit..."<<endl;
+	}else{
+		cout<<"No matching cmd"<<endl;
 	}
 }
 
