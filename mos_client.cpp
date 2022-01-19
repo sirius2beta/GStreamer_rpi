@@ -23,8 +23,15 @@ void on_connect(struct mosquitto *mosq, void *obj, int rc) {
 
 void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg) {
 	CustomData* data = (CustomData*) obj;
-
-	cout<<"New message with topic"<<endl;
+	string raw_msg(msg);
+	string cap;
+	cout<<"New message with topic:"<<raw_msg<<endl;
+	size_t space_pos = raw_msg.find(msg);
+	if(space_pos == string::npos){
+		cap = raw_msg;
+	}else{
+		cap = string(msg,0, space_pos);
+	}
 	if(false){
 		cout<<"playing"<<endl;
 		if(data->streaming_started == false){
