@@ -21,7 +21,7 @@ void on_connect(struct mosquitto *mosq, void *obj, int rc) {
 
 void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg) {
 	CustomData* data = (CustomData*) obj;
-	char* message = (char *) msg->payload);
+	char* message = (char *) msg->payload;
 	printf("New message with topic %s: %s\n", msg->topic, message);
 	if(strcmp(message,"play")){
 		printf("Playing...");
