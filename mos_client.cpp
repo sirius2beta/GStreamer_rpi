@@ -30,7 +30,7 @@ void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_messag
 	if(space_pos == string::npos){
 		cap = raw_msg;
 	}else{
-		cap = string(msg,0, space_pos);
+		cap = string(raw_msg,0, space_pos);
 	}
 	if(false){
 		cout<<"playing"<<endl;
