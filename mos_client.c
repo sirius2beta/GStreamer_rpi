@@ -7,6 +7,7 @@
 
 typedef struct _CustomData {
   	GstElement *pipeline;
+	bool streaming_started;
          /* Our one and only pipeline */
 	
 } CustomData;
@@ -36,8 +37,10 @@ void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_messag
 int main(int argc, char *argv[]) {
   gst_init (&argc, &argv);
 	int rc, id=12;
-	bool streaming_started=false;
+	
 	CustomData data;
+	
+	data.streaming_started=false;
 
 	mosquitto_lib_init();
 	/* Initialize GStreamer */
