@@ -46,7 +46,7 @@ void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_messag
 	}else if(cap.compare(string("QUIT")) == 0){
 		cout<<"quit..."<<endl;
 	}else{
-		cout<<"No matching cmd"<<endl;
+		cout<<"No matching cmd:"<<cap<<endl;
 	}
 }
 
