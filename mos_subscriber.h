@@ -22,6 +22,8 @@ int main((int argc, char *argv[]) {
 	int rc, id=12;
 
 	mosquitto_lib_init();
+	/* Initialize GStreamer */
+  	gst_init (&argc, &argv);
 
 	struct mosquitto *mosq;
 
