@@ -32,16 +32,19 @@ void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_messag
 	}else{
 		cap = string(raw_msg,0, space_pos);
 	}
-	if(false){
-		cout<<"playing"<<endl;
+	if(cap.compare(string("START")) == 0){
+		cout<<"START..."<<endl;
 		if(data->streaming_started == false){
 			data->pipeline = gst_parse_launch("gst-launch-1.0 -v v4l2src device=/dev/video0 num-buffers=-1 ! video/x-raw, width=640, height=480, framerate=12/1 ! videoconvert ! jpegenc ! rtpjpegpay ! udpsink host=10.8.0.4 port=5200", NULL);
 			gst_element_set_state (data->pipeline, GST_STATE_PLAYING);
 			data->streaming_started = true;
 		}
-	}else if(cap.compare(string("GST:")) == 0){
+	}else if(cap.compare(string("GST")) == 0){
 		string gst_command(raw_msg,space_pos+1,raw_msg.length()-space_pos-1);
-		cout<<gst_command<<endl;
+		data->pipeline = gst_parse_launch(gst_command.c_str(), NULL);
+		gst_element_set_state (data->pipeline, GST_STATE_PLAYING);
+		data->streaming_started = true;
+		cout<<"GST_COMMAND : "<<gst_command<<endl;
 	
 	}else if(cap.compare(string("QUIT")) == 0){
 		cout<<"quit..."<<endl;
