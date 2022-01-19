@@ -26,7 +26,7 @@ void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_messag
 	string raw_msg((char*)msg);
 	string cap;
 	cout<<"New message with topic:"<<raw_msg<<endl;
-	size_t space_pos = raw_msg.find('');
+	size_t space_pos = raw_msg.find(' ');
 	if(space_pos == string::npos){
 		cap = raw_msg;
 	}else{
