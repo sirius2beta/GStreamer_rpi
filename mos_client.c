@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
   	gst_object_unref (data->bus);
  	gst_element_set_state (data->pipeline, GST_STATE_NULL);
   	gst_object_unref (data->pipeline);
-	free(data);
+
 
 	return 0;
 }
