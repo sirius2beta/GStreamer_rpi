@@ -18,7 +18,7 @@ void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_messag
 	printf("New message with topic %s: %s\n", msg->topic, (char *) msg->payload);
 }
 
-int main((int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
   gst_init (&argc, &argv);
 	int rc, id=12;
 
