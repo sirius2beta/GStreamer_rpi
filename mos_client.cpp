@@ -34,7 +34,7 @@ void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_messag
 	}
 	if(cap.compare(string("START")) == 0){
 		if(data->streaming_started == false){
-			data->pipeline = gst_parse_launch("gst-launch-1.0 -v v4l2src device=/dev/video0 num-buffers=-1 ! video/x-raw, width=640, height=480, framerate=12/1 ! videoconvert ! jpegenc ! rtpjpegpay ! udpsink host=10.8.0.4 port=5200", NULL);
+			data->pipeline = gst_parse_launch("gst-launch-1.0 -v v4l2src device=/dev/video0 num-buffers=-1 ! video/x-raw, width=160, height=120, framerate=12/1 ! videoconvert ! jpegenc ! rtpjpegpay ! udpsink host=10.8.0.4 port=5200", NULL);
 			gst_element_set_state (data->pipeline, GST_STATE_PLAYING);
 			data->streaming_started = true;
 			cout<<"START..."<<endl;
