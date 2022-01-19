@@ -40,7 +40,7 @@ void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_messag
 			data->streaming_started = true;
 		}
 	}else if(cap.compare(string("GST:"))){
-		string gst_command(raw_msg,space_pos+1,raw_msg.length-space_pose-1);
+		string gst_command(raw_msg,space_pos+1,raw_msg.length-space_pos-1);
 		cout<<gst_command<<endl;
 	
 	}else if(cap.compare(string("QUIT"))){
