@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
 	mosquitto_destroy(mosq);
 	mosquitto_lib_cleanup();
 	/* Free resources */
-	if(streaming_started){
+	if(data.streaming_started){
  		gst_element_set_state (data.pipeline, GST_STATE_NULL);
   		gst_object_unref (data.pipeline);
 	}
