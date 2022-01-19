@@ -15,7 +15,7 @@ typedef struct _CustomData {
 
 void on_connect(struct mosquitto *mosq, void *obj, int rc) {
 	if(rc) {
-		cout << "Error with result code:"<<rc<<endl);
+		cout << "Error with result code:"<<rc<<endl;
 		exit(-1);
 	}
 	mosquitto_subscribe(mosq, NULL, "test/t1", 0);
