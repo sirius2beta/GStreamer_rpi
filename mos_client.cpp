@@ -23,7 +23,7 @@ void on_connect(struct mosquitto *mosq, void *obj, int rc) {
 
 void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg) {
 	CustomData* data = (CustomData*) obj;
-	string raw_msg((char*)msg);
+	string raw_msg((char*)msg->payload);
 	string cap;
 	cout<<"New message with topic:"<<raw_msg<<endl;
 	size_t space_pos = raw_msg.find(' ');
