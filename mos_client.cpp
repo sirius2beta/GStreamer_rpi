@@ -46,9 +46,15 @@ void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_messag
 		}
 	}else if(cap.compare(string("GST")) == 0){
 		string gst_command(raw_msg,space_pos+1,raw_msg.length()-space_pos-1);
-		data->pipeline = gst_parse_launch(gst_command.c_str(), NULL);
-		gst_element_set_state (data->pipeline, GST_STATE_PLAYING);
-		data->streaming_started = true;
+		if(data->streaming_started == false){
+			data->pipeline = gst_parse_launch(gst_command.c_str(), NULL);
+			gst_element_set_state (data->pipeline, GST_STATE_PLAYING);
+			data->streaming_started = true;
+		}else{
+			gst_element_set_state (data->pipeline, GST_STATE_NULL);
+			data->pipeline = gst_parse_launch(gst_command.c_str(), NULL);
+			gst_element_set_state (data->pipeline, GST_STATE_PLAYING);
+		}
 		cout<<"GST_COMMAND : "<<gst_command<<endl;
 	
 	}else if(cap.compare(string("QUIT")) == 0){
