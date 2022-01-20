@@ -59,8 +59,8 @@ void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_messag
 	
 	}else if(cap.compare(string("QUIT")) == 0){
 		if(data->streaming_started == true){
-			gst_element_set_state (data.pipeline, GST_STATE_NULL);
-  			gst_object_unref (data.pipeline);
+			gst_element_set_state (data->pipeline, GST_STATE_NULL);
+  			gst_object_unref (data->pipeline);
 			data->streaming_started = false;
 			cout<<"quit..."<<endl;
 		}
