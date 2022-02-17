@@ -9,6 +9,7 @@ using namespace std;
 typedef struct _CustomData {
   	GstElement *pipeline;
 	bool streaming_started;
+	int currentCameraID;
          /* Our one and only pipeline */
 	
 } CustomData;
@@ -63,6 +64,18 @@ void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_messag
   			gst_object_unref (data->pipeline);
 			data->streaming_started = false;
 			cout<<"quit..."<<endl;
+		}
+	}else if(cap.compare(string("SELECT"))){
+		string cameraID(raw_msg,space_pos+1,raw_msg.length()-space_pos-1);
+		if(cameraID.compare(string("A"))){
+			if(data.currentCameraID != 1){
+				gst_element_set_state (data->pipeline, GST_STATE_NULL);
+				data->pipeline = gst_parse_launch(gst_command.c_str(), NULL);
+				gst_element_set_state (data->pipeline, GST_STATE_PLAYING);
+			}
+		}else if(cameraID.compare(string("B"))){
+		}else if(cameraID.compare(string("C"))){
+		}else if(cameraID.compare(string("D"))){
 		}
 	}else{
 		cout<<"No matching cmd:"<<cap<<endl;
