@@ -18,7 +18,7 @@ void on_connect(struct mosquitto *mosq, void *obj, int rc) {
 		cout << "Error with result code:"<<rc<<endl;
 		exit(-1);
 	}
-	mosquitto_subscribe(mosq, NULL, "test/t1", 0);
+	mosquitto_subscribe(mosq, NULL, "USV-CMD/USV-Bravo", 0);
 }
 
 void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg) {
@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
 
 	struct mosquitto *mosq;
 
-	mosq = mosquitto_new("subscribe-test", true, &data);
+	mosq = mosquitto_new("USV-CMD/USV-Bravo", true, &data);
 	mosquitto_connect_callback_set(mosq, on_connect);
 	mosquitto_message_callback_set(mosq, on_message);
 	
